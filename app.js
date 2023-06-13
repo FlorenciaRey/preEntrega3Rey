@@ -118,7 +118,7 @@ function crearCarrito(){
     const finalizar = document.querySelector(".botonFinalizar")
     let botonFinalizar = document.createElement("div")
     botonFinalizar.innerHTML = `
-    <button type="button" class="btn btn-dark" onclick="finalizarCompra()">Finalizar Compra</button>
+    <button type="button" class="btn btn-dark">Finalizar Compra</button>
     `;
     contenedorTotal.appendChild(botonFinalizar)
 
