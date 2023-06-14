@@ -99,7 +99,7 @@ function crearCarrito(){
     <td class="filaCarrito">Cantidad: ${plato.cantidad}</td>
     <td class="filaCarrito">Subtotal: $ ${plato.precio * plato.cantidad}</td>
     <td class="filaCarrito">
-        <button type="button" class="btn btn-dark">Eliminar</button>
+        <button type="button" class="btn btn-dark" onClick="eliminarDelCarrito(${indice})">Eliminar</button>
     </td>
     `;
     listaVacia.appendChild(filaCarrito)
@@ -118,7 +118,7 @@ function crearCarrito(){
     const finalizar = document.querySelector(".botonFinalizar")
     let botonFinalizar = document.createElement("div")
     botonFinalizar.innerHTML = `
-    <button type="button" class="btn btn-dark">Finalizar Compra</button>
+    <button type="button" class="btn btn-dark" onClick="finalizarCompra()">Finalizar Compra</button>
     `;
     contenedorTotal.appendChild(botonFinalizar)
 
@@ -144,6 +144,44 @@ function agregarAlCarrito(indice){
     }
     const carritoActualizado = JSON.stringify(carrito)
     localStorage.setItem("carritoLS", carritoActualizado)  
+}
+function eliminarDelCarrito(indice){
+    const productoAeliminar = carrito.splice(indice,1)
+    console.log(carrito)
+    carritoActualizado = JSON.stringify(carrito)
+    localStorage.setItem("carritoLS", carritoActualizado)
+    crearCarrito()
+    
+}
+
+function vaciarCarrito(){
+    console.log(carrito)
+  carrito.length = 0
+    console.log(carrito)
+    carritoActualizado = JSON.stringify(carrito)
+    localStorage.setItem("carritoLS", carritoActualizado)
+
+}
+
+function finalizarCompra(){
+    (async () => {
+
+        const { value: email } = await Swal.fire({
+          title: 'Ingresá tu correo electrónico',
+          input: 'email',
+          inputPlaceholder: 'Enter your email address'
+        })
+        
+        if (email) {
+            Swal.fire({
+                title: `¡Gracias por tu compra!`,
+                text: `Te enviaremos un mail a ${email}`
+            })
+        }        
+        })()
+        vaciarCarrito()
+        crearCarrito()
+
 }
 
 

@@ -56,7 +56,16 @@ body {
     padding-bottom: 2%;
   }
 
+  
+  .carrito{
+    background-color: rgb(212, 237, 49);
+  }
   .filaCarrito{
     width: 25%;
     text-align: left;
+  }
+
+
+  .totalCompra{
+   border-color: black; 
   }
